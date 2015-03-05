@@ -17,27 +17,20 @@
             <div id="main">
                 <div id="sidebar">
                     <ul>
-                        <li class="active" id="home">
-                            <a href="#">My Links</a>
-                            {% if tag_name %}
-                                {{ tag_name }}
-                            {% endif %}   
+                        <li id="home">
+                            <a href="/bookmarks/">My Links</a>
                         </li>
                         <li><a href="javascript:;" id="addLink">Add a link</a></li>
-                        <li><a href="/bookmarks/tags">Tags</a>
-                    
-                        </li>
+                        <li class="active" ><a href="/bookmarks/tags">Tags</a></li>
+                            {% if tag_name %}
+                                {{ tag_name }}
+                            {% endif %}
                     </ul>
                 </div><!--
-                --><div id="content">
-                    {% for link in links %}
+            --><div id="content">
+                    {% for tag in tags.all %}
                         <div class="link">
-                            <h4><a href="{{ link.url }}">{{ link.title }}</a></h4>
-                            <p class="tags">
-                                {% for tag in link.tags.all %}
-                                    <a href="/bookmarks/tags/{{ tag.name }}/">{{ tag.name }}</a>
-                                {% endfor %}
-                            </p>
+                            <h4><a href="/bookmarks/tags/{{ tag.name }}/">{{ tag.name }}</a></h4>
                         </div>
                     {% endfor %}
                 </div>
